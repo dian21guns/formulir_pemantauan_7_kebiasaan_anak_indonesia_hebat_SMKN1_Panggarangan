@@ -104,6 +104,7 @@
             left: 2px;
         }
 
+        /* Area tanda tangan */
         .signature-table td {
             border: none;
             padding-top: 40px;
@@ -111,6 +112,7 @@
             font-size: 14px;
         }
 
+        /* Style untuk Input Tanda Tangan */
         .signature-table .signature-line {
             width: 90%;
             padding: 0;
@@ -119,6 +121,12 @@
             border: none;
             border-bottom: 1px solid #000;
         }
+        
+        /* Pastikan input Pendidik yang diisi otomatis memiliki latar belakang transparan saat di layar */
+        #pendidikInput {
+            background-color: transparent;
+        }
+
 
         .no-print {
             margin-top: 20px;
@@ -146,7 +154,6 @@
                 margin: 10mm;
             }
 
-            /* Hapus background body saat dicetak */
             body {
                 background: none !important;
             }
@@ -206,8 +213,8 @@
                 border: none !important;
             }
 
-            /* Pastikan input Wali Kelas tercetak tanpa border tebal */
-            #waliKelasInput[readonly] {
+            /* Pastikan input Wali Kelas & Pendidik tercetak tanpa border tebal */
+            #waliKelasInput[readonly], #pendidikInput {
                 border: none !important;
                 background-color: transparent !important;
             }
@@ -317,7 +324,7 @@
                 <td>
                     <p>Menyetujui,<br>Pendidik</p>
                     <div style="height: 40px;"></div>
-                    <input type="text" class="signature-line" placeholder="(Isi Nama Lengkap)">
+                    <input type="text" id="pendidikInput" class="signature-line" placeholder="(Isi Nama Lengkap)">
                 </td>
             </tr>
         </table>
@@ -359,22 +366,32 @@
         "XII-MPLB": "Ibu Erna Fitriani"
     };
 
-    // 3. FUNGSI UTAMA: MEMPERBARUI DROPDOWN SISWA DAN MENGISI WALI KELAS
+    // 3. FUNGSI UTAMA: MEMPERBARUI DROPDOWN SISWA DAN MENGISI WALI KELAS/PENDIDIK
     function updateSiswaList() {
         const kelasDropdown = document.getElementById('kelasDropdown');
         const siswaDropdown = document.getElementById('siswaDropdown');
         const waliKelasInput = document.getElementById('waliKelasInput');
+        const pendidikInput = document.getElementById('pendidikInput'); // Element Pendidik
         
         const kelasDipilih = kelasDropdown.value;
         
         // Reset daftar siswa
         siswaDropdown.innerHTML = '<option value="">-- Pilih Siswa --</option>';
 
-        // A. LOGIKA PENGISIAN WALI KELAS
+        // A. LOGIKA PENGISIAN WALI KELAS & PENDIDIK
         if (kelasDipilih && dataWaliKelas[kelasDipilih]) {
-            waliKelasInput.value = dataWaliKelas[kelasDipilih];
+            const namaWaliKelas = dataWaliKelas[kelasDipilih];
+            
+            // Isi Wali Kelas
+            waliKelasInput.value = namaWaliKelas;
+            
+            // Isi Pendidik (Sesuai dengan Wali Kelas)
+            pendidikInput.value = namaWaliKelas; 
+
         } else {
+            // Kosongkan semua jika kelas tidak dipilih
             waliKelasInput.value = ""; 
+            pendidikInput.value = ""; 
         }
         
         // B. LOGIKA PENGISIAN DAFTAR SISWA
