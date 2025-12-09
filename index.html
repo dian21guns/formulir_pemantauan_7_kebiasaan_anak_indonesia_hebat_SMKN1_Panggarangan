@@ -5,27 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulir Pemantauan Kebiasaan Anak</title>
     <style>
-        /* AREA UTAMA FORM */
+        /* === PENGATURAN LATAR BELAKANG DI LUAR FORMULIR (BACKGROUND BODY) === */
+        body {
+            /* Ganti dengan URL gambar 7 Kebiasaan Anda */
+            background-image: url('https://dian21guns.github.io/formulir_pemantauan_7_kebiasaan_anak_indonesia_hebat_SMKN1_Panggarangan/background.png'); 
+            background-repeat: no-repeat; 
+            background-position: center top; /* Posisikan di tengah atas */
+            background-size: cover; /* Pastikan gambar menutupi seluruh halaman */
+            background-attachment: fixed; /* Membuat gambar tetap di tempat saat di-scroll */
+            background-color: #f0f0f0; /* Warna fallback jika gambar gagal dimuat */
+            margin: 0; /* Hapus margin default body */
+        }
+        /* ================================================================= */
+
+        /* AREA UTAMA FORM (Ini adalah kotak A4 yang bersih) */
         .form-container {
             width: 210mm;
             min-height: 297mm;
             margin: 20px auto;
             padding: 20px;
-            background: white;
+            /* Penting: Set background menjadi putih agar isi formulir jelas dan menutupi gambar body di belakangnya */
+            background: white; 
             font-family: Arial, sans-serif;
             box-sizing: border-box;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         }
 
-        /* Judul */
+        /* ... (CSS Judul, Tabel, Input, Checkbox, dan Tanda Tangan lainnya) ... */
+        
         h2 {
             text-align: center;
-            margin-bottom: 5px; /* Sedikit lebih kecil */
+            margin-bottom: 5px;
             font-size: 20px;
             font-weight: bold;
         }
 
-        /* Tabel umum */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -38,12 +52,10 @@
             font-size: 14px;
         }
 
-        /* Pewarnaan header tabel */
         th {
             background: #f0f0f0;
         }
 
-        /* Input dan select */
         input[type="text"], select {
             width: 95%;
             padding: 5px;
@@ -52,17 +64,14 @@
             box-sizing: border-box;
         }
 
-        /* Checkbox Center & Styling Checkbox Pengganti */
         .checkbox-center {
             text-align: center;
         }
 
-        /* Sembunyikan input checkbox asli di layar */
         .checkbox-center input[type="checkbox"] {
             display: none;
         }
 
-        /* Styling untuk kotak centang saat dicetak manual (dan dilihat di layar) */
         .print-checkbox {
             display: inline-block;
             width: 15px;
@@ -74,19 +83,17 @@
             box-sizing: border-box;
         }
 
-        /* Tambahkan tanda ceklis (√) pada .print-checkbox ketika input checkbox asli DICENTANG */
         .checkbox-center input[type="checkbox"]:checked + .print-checkbox::after {
-            content: "✓"; /* Tanda centang unicode */
+            content: "✓";
             font-size: 16px;
             font-weight: bold;
             line-height: 1;
-            color: #000; /* Pastikan warnanya hitam */
+            color: #000;
             position: absolute;
             top: -1px;
             left: 2px;
         }
 
-        /* Area tanda tangan */
         .signature-table td {
             border: none;
             padding-top: 40px;
@@ -94,18 +101,15 @@
             font-size: 14px;
         }
 
-        /* Style untuk Input Tanda Tangan */
         .signature-table .signature-line {
             width: 90%;
             padding: 0;
             margin-top: 5px;
             text-align: center;
             border: none;
-            border-bottom: 1px solid #000; /* Garis bawah yang terlihat di layar */
+            border-bottom: 1px solid #000;
         }
 
-
-        /* Tombol cetak */
         .no-print {
             margin-top: 20px;
             text-align: center;
@@ -127,24 +131,24 @@
 
         /* MODE PRINT - OPTIMASI 1 HALAMAN A4 */
         @media print {
-
-            /* Halaman A4 dan Margin */
             @page {
                 size: A4;
                 margin: 10mm;
             }
 
-            /* Hilangkan semua elemen blog di luar form */
+            /* Hapus background body saat dicetak */
+            body {
+                background: none !important; 
+            }
+
             body * {
                 visibility: hidden;
             }
 
-            /* Tampilkan hanya formulir dan isinya */
             .form-container, .form-container * {
                 visibility: visible;
             }
 
-            /* Posisi formulir di dalam area cetak */
             .form-container {
                 position: static !important;
                 padding: 0 !important;
@@ -184,33 +188,28 @@
 
             /* --- AKHIR OPTIMASI KOMPRESI VERTIKAL --- */
 
-            /* Hilangkan tombol print */
             .no-print {
                 display: none !important;
             }
 
-            /* Hilangkan border input agar tampak seperti formulir asli */
             input:not(.signature-line), select {
                 border: none !important;
             }
 
-            /* Pastikan input tanda tangan tetap memiliki garis bawah dan textnya tercetak */
             .signature-table .signature-line {
                 border: none !important;
                 border-bottom: 1px solid #000 !important;
                 width: 90% !important;
             }
 
-            /* Tampilkan kotak pengganti dan pastikan tanda centang muncul */
             .checkbox-center input[type="checkbox"] {
-                display: none !important; /* Pastikan checkbox asli tersembunyi */
+                display: none !important;
             }
 
             .print-checkbox {
-                display: inline-block !important; /* Tampilkan kotak pengganti */
+                display: inline-block !important;
             }
 
-            /* Pastikan tanda centang dicetak */
             .checkbox-center input[type="checkbox"]:checked + .print-checkbox::after {
                 content: "✓" !important;
             }
@@ -218,12 +217,12 @@
     </style>
 </head>
 <body>
-
+    
     <div class="form-container">
 
         <h2>FORMULIR PEMANTAUAN 7 KEBIASAAN ANAK INDONESIA HEBAT</h2>
         <h2>SMKN 1 PANGGARANGAN</h2>
-
+        
         <table>
             <tr>
                 <td style="width:30%;">Nama Anak</td>
