@@ -10,11 +10,11 @@
             /* URL GAMBAR LATAR BELAKANG DARI PERMINTAAN ANDA */
             background-image: url('https://dian21guns.github.io/formulir_pemantauan_7_kebiasaan_anak_indonesia_hebat_SMKN1_Panggarangan/background.png');
             background-repeat: no-repeat;
-            background-position: center top; /* Posisikan di tengah atas */
-            background-size: cover; /* Pastikan gambar menutupi seluruh halaman */
-            background-attachment: fixed; /* Membuat gambar tetap di tempat saat di-scroll */
-            background-color: #f0f0f0; /* Warna fallback jika gambar gagal dimuat */
-            margin: 0; /* Hapus margin default body */
+            background-position: center top; 
+            background-size: cover; 
+            background-attachment: fixed; 
+            background-color: #f0f0f0; 
+            margin: 0; 
         }
         /* ================================================================= */
 
@@ -24,7 +24,6 @@
             min-height: 297mm;
             margin: 20px auto;
             padding: 20px;
-            /* Penting: Set background menjadi putih agar isi formulir jelas dan menutupi gambar body di belakangnya */
             background: white;
             font-family: Arial, sans-serif;
             box-sizing: border-box;
@@ -62,8 +61,8 @@
             box-sizing: border-box;
         }
 
-        /* Set input Wali Kelas dan Nama Siswa ke lebar 100% untuk konsistensi */
-        #waliKelasInput, #siswaDropdown {
+        /* Set input Wali Kelas dan Nama Siswa ke lebar 95% untuk konsistensi */
+        #waliKelasInput, #siswaDropdown, #kelasDropdown {
              width: 95%;
         }
         
@@ -122,7 +121,7 @@
             border-bottom: 1px solid #000;
         }
         
-        /* Pastikan input Pendidik yang diisi otomatis memiliki latar belakang transparan saat di layar */
+        /* Pastikan input Wali Kelas/Pendidik yang diisi otomatis memiliki latar belakang transparan saat di layar */
         #pendidikInput {
             background-color: transparent;
         }
@@ -322,7 +321,7 @@
                     <input type="text" class="signature-line" placeholder="(Isi Nama Lengkap)">
                 </td>
                 <td>
-                    <p>Menyetujui,<br>**Wali Kelas**</p>
+                    <p>Menyetujui,<br>Wali Kelas</p>
                     <div style="height: 40px;"></div>
                     <input type="text" id="pendidikInput" class="signature-line" placeholder="(Isi Nama Lengkap)">
                 </td>
@@ -342,36 +341,45 @@
     </div>
 
 <script>
-    // 1. DATA SISWA
+    // 1. DATA SISWA (Tidak diubah, menggunakan data dari permintaan sebelumnya)
     const dataSiswa = {
-        "X-MPLB": [
-            "Ahmad Budi Santoso", "Citra Dewi Lestari", "Eko Prasetyo", "Fatimah Nuraini"
+        "X-MPLB": [ 
+            "AGUS BAYU", "ARIF SAEPUROHMAN", "Chika Regina Putri", "DEA SEPTRIANI", "Dede Sapira", "DIKA AGUNG SAPUTRA", 
+            "DINO ARYANTO", "ERLANGGA PUTRA PRATAMA", "LILI SAPUTRA", "M. Sundava", "MELVIN HEDILIANSYAH", "MOCHAMAD FARID KURNIAWAN", 
+            "MUHAMAD RIZKI R", "MUHAMMAD KHADAFI", "MUPLIHATUN HASANAH", "RAHMI MERLIYANI", "RAMDANI", "RAPI JUENI", 
+            "REPA AUDIANA", "RIDWAN", "RINA FITRIYANI", "RIZAL SETIAWAN", "SAHRUL RIZKI", "SILVA OKTAVIANI", "SITI KAMILA"
         ],
-        "XI-MPLB": [
-            "Gita Rahmawati", "Hendra Wijaya", "Indah Sari", "Joko Susanto"
+        "XI-MPLB": [ 
+            "ADITIA", "ADJIE DESFIAN SAPUTRA", "APRIL AGUS RIANI", "Arienna Almaghvira", "ATIAH HINDIANI", "DEDE ARYANTI", 
+            "DESI NURCAHYANI", "ELPA MUFLIHATUL FAUZI", "MUHAMAD JUNIOR", "NENG LINA RISMAYANTI", "PARIZWAL AZIZ", "RELISTA JUWININDA", 
+            "RIJAL", "ROHAETI AULISTIN", "Sindi D'Laras", "Teti Agustiin", "WARNI APRILIANI"
         ],
-        "XI-PEMASARAN": [
-            "Kiki Amelia", "Lukman Hakim", "Maya Puspita"
+        "XI-PEMASARAN": [ 
+            "ANISAH", "CIKA WULAN SRI RAHAYU", "Dedeh Hela", "DENI IRAWAN", "DEPI OKTAPIYANTI", "DIVA DESVITA SANDRA", 
+            "FIRMAN PERMANA", "Muhamad Fikri Al Madan", "PIANA ROSA LINDA", "Putri Widiastuti", "RENATA TRIYANI", "RIVAL", 
+            "SAKINAH AZAHRA", "SITI PUSPITA SARI", "Wendra Destriana"
         ],
-        "XII-MPLB": [
-            "Nanda Firdaus", "Oscar Maulana", "Putri Handayani"
+        "XII-MPLB": [ 
+            "AIDA NURULAENI", "ANDI FIRMANSAH", "ANJAR SAPUTRA", "ARIF SETIABUDI", "ARIL", "CIKA", "DANU WIRANATA", 
+            "DEPI ADELIA SARI", "EPAN SUENDAR", "HENGKI IRWANSYAH", "HILWAN ISTREN KUSUMA", "INDAH APRILIANI", "IRPAN JULIANSYAH", 
+            "JUWITA", "NADILA AL FADILLAH", "Refan Setiawan", "SAHWA ANISTIA", "SUHENDRI"
         ]
     };
 
-    // 2. DATA WALI KELAS
+    // 2. DATA WALI KELAS (SUDAH DIPERBARUI DENGAN DATA BARU ANDA)
     const dataWaliKelas = {
-        "X-MPLB": "Bapak Antonius R",
-        "XI-MPLB": "Ibu Dewi Puspitasari",
-        "XI-PEMASARAN": "Bapak Cahyo Utomo",
-        "XII-MPLB": "Ibu Erna Fitriani"
+        "X-MPLB": "TUTI RUMYATI, S.Pd.",
+        "XI-MPLB": "IMAN AGUS WANTRIYADI, S.Pd.",
+        "XI-PEMASARAN": "ENDING, S.Pd.", 
+        "XII-MPLB": "AGUS NURSOLEH, S.Pd." 
     };
 
-    // 3. FUNGSI UTAMA: MEMPERBARUI DROPDOWN SISWA DAN MENGISI WALI KELAS
+    // 3. FUNGSI UTAMA: MEMPERBARUI DROPDOWN SISWA DAN MENGISI WALI KELAS OTOMATIS
     function updateSiswaList() {
         const kelasDropdown = document.getElementById('kelasDropdown');
         const siswaDropdown = document.getElementById('siswaDropdown');
         const waliKelasInput = document.getElementById('waliKelasInput');
-        const pendidikInput = document.getElementById('pendidikInput'); // Element Tanda Tangan Wali Kelas
+        const pendidikInput = document.getElementById('pendidikInput');
         
         const kelasDipilih = kelasDropdown.value;
         
@@ -396,7 +404,8 @@
         
         // B. LOGIKA PENGISIAN DAFTAR SISWA
         if (kelasDipilih && dataSiswa[kelasDipilih]) {
-            const listSiswa = dataSiswa[kelasDipilih].sort(); 
+            // Ambil daftar siswa dan urutkan
+            const listSiswa = dataSiswa[kelasDipilih].sort((a, b) => a.localeCompare(b)); 
 
             listSiswa.forEach(nama => {
                 const option = document.createElement('option');
