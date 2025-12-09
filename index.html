@@ -322,7 +322,7 @@
                     <input type="text" class="signature-line" placeholder="(Isi Nama Lengkap)">
                 </td>
                 <td>
-                    <p>Menyetujui,<br>Wali Kelas</p>
+                    <p>Menyetujui,<br>**Wali Kelas**</p>
                     <div style="height: 40px;"></div>
                     <input type="text" id="pendidikInput" class="signature-line" placeholder="(Isi Nama Lengkap)">
                 </td>
@@ -366,26 +366,26 @@
         "XII-MPLB": "Ibu Erna Fitriani"
     };
 
-    // 3. FUNGSI UTAMA: MEMPERBARUI DROPDOWN SISWA DAN MENGISI WALI KELAS/PENDIDIK
+    // 3. FUNGSI UTAMA: MEMPERBARUI DROPDOWN SISWA DAN MENGISI WALI KELAS
     function updateSiswaList() {
         const kelasDropdown = document.getElementById('kelasDropdown');
         const siswaDropdown = document.getElementById('siswaDropdown');
         const waliKelasInput = document.getElementById('waliKelasInput');
-        const pendidikInput = document.getElementById('pendidikInput'); // Element Pendidik
+        const pendidikInput = document.getElementById('pendidikInput'); // Element Tanda Tangan Wali Kelas
         
         const kelasDipilih = kelasDropdown.value;
         
         // Reset daftar siswa
         siswaDropdown.innerHTML = '<option value="">-- Pilih Siswa --</option>';
 
-        // A. LOGIKA PENGISIAN WALI KELAS & PENDIDIK
+        // A. LOGIKA PENGISIAN WALI KELAS & TANDA TANGAN WALI KELAS
         if (kelasDipilih && dataWaliKelas[kelasDipilih]) {
             const namaWaliKelas = dataWaliKelas[kelasDipilih];
             
-            // Isi Wali Kelas
+            // Isi Input Wali Kelas (di bagian atas)
             waliKelasInput.value = namaWaliKelas;
             
-            // Isi Pendidik (Sesuai dengan Wali Kelas)
+            // Isi Tanda Tangan Wali Kelas (di bagian bawah)
             pendidikInput.value = namaWaliKelas; 
 
         } else {
