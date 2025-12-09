@@ -7,9 +7,9 @@
     <style>
         /* === PENGATURAN LATAR BELAKANG DI LUAR FORMULIR (BACKGROUND BODY) === */
         body {
-            /* Ganti dengan URL gambar 7 Kebiasaan Anda */
-            background-image: url('https://dian21guns.github.io/formulir_pemantauan_7_kebiasaan_anak_indonesia_hebat_SMKN1_Panggarangan/background.png'); 
-            background-repeat: no-repeat; 
+            /* URL GAMBAR LATAR BELAKANG DARI PERMINTAAN ANDA */
+            background-image: url('https://dian21guns.github.io/formulir_pemantauan_7_kebiasaan_anak_indonesia_hebat_SMKN1_Panggarangan/background.png');
+            background-repeat: no-repeat;
             background-position: center top; /* Posisikan di tengah atas */
             background-size: cover; /* Pastikan gambar menutupi seluruh halaman */
             background-attachment: fixed; /* Membuat gambar tetap di tempat saat di-scroll */
@@ -25,14 +25,12 @@
             margin: 20px auto;
             padding: 20px;
             /* Penting: Set background menjadi putih agar isi formulir jelas dan menutupi gambar body di belakangnya */
-            background: white; 
+            background: white;
             font-family: Arial, sans-serif;
             box-sizing: border-box;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         }
 
-        /* ... (CSS Judul, Tabel, Input, Checkbox, dan Tanda Tangan lainnya) ... */
-        
         h2 {
             text-align: center;
             margin-bottom: 5px;
@@ -63,6 +61,18 @@
             border: 1px solid #777;
             box-sizing: border-box;
         }
+
+        /* Set input Wali Kelas dan Nama Siswa ke lebar 100% untuk konsistensi */
+        #waliKelasInput, #siswaDropdown {
+             width: 95%;
+        }
+        
+        /* Pastikan input Wali Kelas yang diisi otomatis tidak terlihat seperti bisa diedit */
+        #waliKelasInput[readonly] {
+            background-color: #f9f9f9;
+            cursor: default;
+        }
+
 
         .checkbox-center {
             text-align: center;
@@ -138,7 +148,7 @@
 
             /* Hapus background body saat dicetak */
             body {
-                background: none !important; 
+                background: none !important;
             }
 
             body * {
@@ -192,10 +202,16 @@
                 display: none !important;
             }
 
-            input:not(.signature-line), select {
+            input:not(.signature-line):not(#waliKelasInput), select {
                 border: none !important;
             }
 
+            /* Pastikan input Wali Kelas tercetak tanpa border tebal */
+            #waliKelasInput[readonly] {
+                border: none !important;
+                background-color: transparent !important;
+            }
+            
             .signature-table .signature-line {
                 border: none !important;
                 border-bottom: 1px solid #000 !important;
@@ -217,17 +233,13 @@
     </style>
 </head>
 <body>
-    
+
     <div class="form-container">
 
         <h2>FORMULIR PEMANTAUAN 7 KEBIASAAN ANAK INDONESIA HEBAT</h2>
         <h2>SMKN 1 PANGGARANGAN</h2>
-        
+
         <table>
-            <tr>
-                <td style="width:30%;">Nama Anak</td>
-                <td><input type="text"></td>
-            </tr>
             <tr>
                 <td>Nama Sekolah</td>
                 <td><input type="text" value="SMKN 1 PANGGARANGAN"></td>
@@ -235,18 +247,28 @@
             <tr>
                 <td>Kelas</td>
                 <td>
-                    <select>
+                    <select id="kelasDropdown" onchange="updateSiswaList()">
                         <option value="">-- Pilih Kelas --</option>
-                        <option>X-MPLB</option>
-                        <option>XI-MPLB</option>
-                        <option>XI-PEMASARAN</option>
-                        <option>XII-MPLB</option>
+                        <option value="X-MPLB">X-MPLB</option>
+                        <option value="XI-MPLB">XI-MPLB</option>
+                        <option value="XI-PEMASARAN">XI-PEMASARAN</option>
+                        <option value="XII-MPLB">XII-MPLB</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Nama Siswa</td>
+                <td>
+                    <select id="siswaDropdown">
+                        <option value="">-- Pilih Siswa --</option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td>Wali Kelas</td>
-                <td><input type="text"></td>
+                <td>
+                    <input type="text" id="waliKelasInput" readonly>
+                </td>
             </tr>
             <tr>
                 <td>Bulan</td>
@@ -273,118 +295,13 @@
                     <th style="width: 20%;">Sudah Terbiasa</th>
                 </tr>
             </thead>
-
-            <tr>
-                <td>1</td><td>Bangun Pagi</td>
-                <td class="checkbox-center">
-                    <label>
-                        <input type="checkbox">
-                        <span class="print-checkbox"></span>
-                    </label>
-                </td>
-                <td class="checkbox-center">
-                    <label>
-                        <input type="checkbox">
-                        <span class="print-checkbox"></span>
-                    </label>
-                </td>
-            </tr>
-
-            <tr>
-                <td>2</td><td>Beribadah</td>
-                <td class="checkbox-center">
-                    <label>
-                        <input type="checkbox">
-                        <span class="print-checkbox"></span>
-                    </label>
-                </td>
-                <td class="checkbox-center">
-                    <label>
-                        <input type="checkbox">
-                        <span class="print-checkbox"></span>
-                    </label>
-                </td>
-            </tr>
-
-            <tr>
-                <td>3</td><td>Berolahraga</td>
-                <td class="checkbox-center">
-                    <label>
-                        <input type="checkbox">
-                        <span class="print-checkbox"></span>
-                    </label>
-                </td>
-                <td class="checkbox-center">
-                    <label>
-                        <input type="checkbox">
-                        <span class="print-checkbox"></span>
-                    </label>
-                </td>
-            </tr>
-
-            <tr>
-                <td>4</td><td>Makan Sehat dan Bergizi</td>
-                <td class="checkbox-center">
-                    <label>
-                        <input type="checkbox">
-                        <span class="print-checkbox"></span>
-                    </label>
-                </td>
-                <td class="checkbox-center">
-                    <label>
-                        <input type="checkbox">
-                        <span class="print-checkbox"></span>
-                    </label>
-                </td>
-            </tr>
-
-            <tr>
-                <td>5</td><td>Gemar Belajar</td>
-                <td class="checkbox-center">
-                    <label>
-                        <input type="checkbox">
-                        <span class="print-checkbox"></span>
-                    </label>
-                </td>
-                <td class="checkbox-center">
-                    <label>
-                        <input type="checkbox">
-                        <span class="print-checkbox"></span>
-                    </label>
-                </td>
-            </tr>
-
-            <tr>
-                <td>6</td><td>Bermasyarakat</td>
-                <td class="checkbox-center">
-                    <label>
-                        <input type="checkbox">
-                        <span class="print-checkbox"></span>
-                    </label>
-                </td>
-                <td class="checkbox-center">
-                    <label>
-                        <input type="checkbox">
-                        <span class="print-checkbox"></span>
-                    </label>
-                </td>
-            </tr>
-
-            <tr>
-                <td>7</td><td>Tidur Cepat</td>
-                <td class="checkbox-center">
-                    <label>
-                        <input type="checkbox">
-                        <span class="print-checkbox"></span>
-                    </label>
-                </td>
-                <td class="checkbox-center">
-                    <label>
-                        <input type="checkbox">
-                        <span class="print-checkbox"></span>
-                    </label>
-                </td>
-            </tr>
+            <tr><td>1</td><td>Bangun Pagi</td><td class="checkbox-center"><label><input type="checkbox"><span class="print-checkbox"></span></label></td><td class="checkbox-center"><label><input type="checkbox"><span class="print-checkbox"></span></label></td></tr>
+            <tr><td>2</td><td>Beribadah</td><td class="checkbox-center"><label><input type="checkbox"><span class="print-checkbox"></span></label></td><td class="checkbox-center"><label><input type="checkbox"><span class="print-checkbox"></span></label></td></tr>
+            <tr><td>3</td><td>Berolahraga</td><td class="checkbox-center"><label><input type="checkbox"><span class="print-checkbox"></span></label></td><td class="checkbox-center"><label><input type="checkbox"><span class="print-checkbox"></span></label></td></tr>
+            <tr><td>4</td><td>Makan Sehat dan Bergizi</td><td class="checkbox-center"><label><input type="checkbox"><span class="print-checkbox"></span></label></td><td class="checkbox-center"><label><input type="checkbox"><span class="print-checkbox"></span></label></td></tr>
+            <tr><td>5</td><td>Gemar Belajar</td><td class="checkbox-center"><label><input type="checkbox"><span class="print-checkbox"></span></label></td><td class="checkbox-center"><label><input type="checkbox"><span class="print-checkbox"></span></label></td></tr>
+            <tr><td>6</td><td>Bermasyarakat</td><td class="checkbox-center"><label><input type="checkbox"><span class="print-checkbox"></span></label></td><td class="checkbox-center"><label><input type="checkbox"><span class="print-checkbox"></span></label></td></tr>
+            <tr><td>7</td><td>Tidur Cepat</td><td class="checkbox-center"><label><input type="checkbox"><span class="print-checkbox"></span></label></td><td class="checkbox-center"><label><input type="checkbox"><span class="print-checkbox"></span></label></td></tr>
 
         </table>
 
@@ -416,5 +333,62 @@
         </div>
 
     </div>
+
+<script>
+    // 1. DATA SISWA
+    const dataSiswa = {
+        "X-MPLB": [
+            "Ahmad Budi Santoso", "Citra Dewi Lestari", "Eko Prasetyo", "Fatimah Nuraini"
+        ],
+        "XI-MPLB": [
+            "Gita Rahmawati", "Hendra Wijaya", "Indah Sari", "Joko Susanto"
+        ],
+        "XI-PEMASARAN": [
+            "Kiki Amelia", "Lukman Hakim", "Maya Puspita"
+        ],
+        "XII-MPLB": [
+            "Nanda Firdaus", "Oscar Maulana", "Putri Handayani"
+        ]
+    };
+
+    // 2. DATA WALI KELAS
+    const dataWaliKelas = {
+        "X-MPLB": "Bapak Antonius R",
+        "XI-MPLB": "Ibu Dewi Puspitasari",
+        "XI-PEMASARAN": "Bapak Cahyo Utomo",
+        "XII-MPLB": "Ibu Erna Fitriani"
+    };
+
+    // 3. FUNGSI UTAMA: MEMPERBARUI DROPDOWN SISWA DAN MENGISI WALI KELAS
+    function updateSiswaList() {
+        const kelasDropdown = document.getElementById('kelasDropdown');
+        const siswaDropdown = document.getElementById('siswaDropdown');
+        const waliKelasInput = document.getElementById('waliKelasInput');
+        
+        const kelasDipilih = kelasDropdown.value;
+        
+        // Reset daftar siswa
+        siswaDropdown.innerHTML = '<option value="">-- Pilih Siswa --</option>';
+
+        // A. LOGIKA PENGISIAN WALI KELAS
+        if (kelasDipilih && dataWaliKelas[kelasDipilih]) {
+            waliKelasInput.value = dataWaliKelas[kelasDipilih];
+        } else {
+            waliKelasInput.value = ""; 
+        }
+        
+        // B. LOGIKA PENGISIAN DAFTAR SISWA
+        if (kelasDipilih && dataSiswa[kelasDipilih]) {
+            const listSiswa = dataSiswa[kelasDipilih].sort(); 
+
+            listSiswa.forEach(nama => {
+                const option = document.createElement('option');
+                option.value = nama;
+                option.textContent = nama;
+                siswaDropdown.appendChild(option);
+            });
+        }
+    }
+</script>
 </body>
 </html>
