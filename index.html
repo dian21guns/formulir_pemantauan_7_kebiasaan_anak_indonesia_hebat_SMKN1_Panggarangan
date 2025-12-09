@@ -1,0 +1,357 @@
+<style>
+/* AREA UTAMA FORM */
+.form-container {
+    width: 210mm;             /* ukuran kertas A4 */
+    min-height: 297mm;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Judul */
+h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Tabel umum */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #000;
+    padding: 6px; 
+    font-size: 14px; 
+}
+
+/* Pewarnaan header tabel */
+th {
+    background: #f0f0f0;
+}
+
+/* Input dan select */
+input[type="text"], select {
+    width: 95%;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #777;
+}
+
+/* Checkbox center */
+.checkbox-center {
+    text-align: center;
+}
+
+/* Styling untuk kotak centang saat dicetak manual */
+.print-checkbox {
+    display: none;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #000;
+    vertical-align: middle;
+}
+
+/* Area tanda tangan */
+.signature-table td {
+    border: none;
+    padding-top: 40px; 
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Style untuk Input Tanda Tangan */
+.signature-table .signature-line {
+    width: 90%; 
+    padding: 0;
+    margin-top: 5px;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid #000; /* Garis bawah yang terlihat di layar */
+}
+
+
+/* Tombol cetak */
+.no-print {
+    margin-top: 20px;
+    text-align: center;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    background: #0099ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+button:hover {
+    background: #007acc;
+}
+
+/* MODE PRINT - OPTIMASI 1 HALAMAN A4 */
+@media print {
+
+    /* Halaman A4 dan Margin */
+    @page {
+        size: A4;
+        margin: 10mm; 
+    }
+
+    /* Hilangkan semua elemen blog */
+    body * {
+        visibility: hidden;
+    }
+
+    /* Tampilkan hanya formulir */
+    .form-container, .form-container * {
+        visibility: visible;
+    }
+
+    /* Posisi formulir di dalam area cetak */
+    .form-container {
+        position: static !important;
+        padding: 0 !important;
+        margin: 0 auto !important;
+        box-shadow: none;
+        width: 100% !important;
+        min-height: auto !important;
+    }
+
+    /* --- OPTIMASI KOMPRESI VERTIKAL --- */
+
+    h2 {
+        font-size: 18px !important;
+        margin-bottom: 5px !important;
+    }
+
+    table {
+        margin-top: 5px !important;
+    }
+
+    th, td {
+        font-size: 13px !important; 
+        padding: 4px !important; 
+    }
+    
+    input[type="text"], select {
+        padding: 3px !important;
+    }
+    
+    .signature-table td {
+        padding-top: 20px !important;
+    }
+    
+    p {
+        font-size: 12px !important; 
+    }
+    
+    /* --- AKHIR OPTIMASI KOMPRESI VERTIKAL --- */
+    
+    /* Hilangkan tombol print */
+    .no-print {
+        display: none !important;
+    }
+
+    /* Hilangkan border input agar tampak seperti formulir asli */
+    input:not(.signature-line), select {
+        border: none !important;
+    }
+    
+    /* Pastikan input tanda tangan tetap memiliki garis bawah dan textnya tercetak */
+    .signature-table .signature-line {
+        border: none !important;
+        border-bottom: 1px solid #000 !important; /* Pertahankan garis bawah saat dicetak */
+        width: 90% !important;
+    }
+
+    /* Checkbox */
+    .checkbox-center input[type="checkbox"] {
+        display: none !important;
+    }
+    
+    .print-checkbox {
+        display: none !important; 
+    }
+}
+</style>
+
+<div class="form-container">
+
+<h2>FORMULIR PEMANTAUAN 7 KEBIASAAN ANAK INDONESIA HEBAT</h2>
+<h2>SMKN 1 PANGGARANGAN</h2>
+
+<table>
+<tr>
+    <td style="width:30%;">Nama Anak</td>
+    <td><input type="text"></td>
+</tr>
+<tr>
+    <td>Nama Sekolah</td>
+    <td><input type="text" value="SMKN 1 PANGGARANGAN"></td>
+</tr>
+<tr>
+    <td>Kelas</td>
+    <td>
+        <select>
+            <option value="">-- Pilih Kelas --</option>
+            <option>X-MPLB</option>
+            <option>XI-MPLB</option>
+            <option>XI-PEMASARAN</option>
+            <option>XII-MPLB</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td>Wali Kelas</td>
+    <td><input type="text"></td>
+</tr>
+<tr>
+    <td>Bulan</td>
+    <td>
+        <select>
+            <option value="">-- Pilih Bulan --</option>
+            <option>Januari</option><option>Februari</option><option>Maret</option>
+            <option>April</option><option>Mei</option><option>Juni</option>
+            <option>Juli</option><option>Agustus</option><option>September</option>
+            <option>Oktober</option><option>November</option><option>Desember</option>
+        </select>
+    </td>
+</tr>
+</table>
+
+<br>
+
+<table>
+<thead>
+<tr>
+    <th>No.</th>
+    <th>Kebiasaan</th>
+    <th>Belum Terbiasa</th>
+    <th>Sudah Terbiasa</th>
+</tr>
+</thead>
+
+<tr>
+<td>1</td><td>Bangun Pagi</td>
+<td class="checkbox-center">
+    <input type="checkbox">
+    <span class="print-checkbox"></span>
+</td>
+<td class="checkbox-center">
+    <input type="checkbox">
+    <span class="print-checkbox"></span>
+</td>
+</tr>
+
+<tr>
+<td>2</td><td>Beribadah</td>
+<td class="checkbox-center">
+    <input type="checkbox">
+    <span class="print-checkbox"></span>
+</td>
+<td class="checkbox-center">
+    <input type="checkbox">
+    <span class="print-checkbox"></span>
+</td>
+</tr>
+
+<tr>
+<td>3</td><td>Berolahraga</td>
+<td class="checkbox-center">
+    <input type="checkbox">
+    <span class="print-checkbox"></span>
+</td>
+<td class="checkbox-center">
+    <input type="checkbox">
+    <span class="print-checkbox"></span>
+</td>
+</tr>
+
+<tr>
+<td>4</td><td>Makan Sehat dan Bergizi</td>
+<td class="checkbox-center">
+    <input type="checkbox">
+    <span class="print-checkbox"></span>
+</td>
+<td class="checkbox-center">
+    <input type="checkbox">
+    <span class="print-checkbox"></span>
+</td>
+</tr>
+
+<tr>
+<td>5</td><td>Gemar Belajar</td>
+<td class="checkbox-center">
+    <input type="checkbox">
+    <span class="print-checkbox"></span>
+</td>
+<td class="checkbox-center">
+    <input type="checkbox">
+    <span class="print-checkbox"></span>
+</td>
+</tr>
+
+<tr>
+<td>6</td><td>Bermasyarakat</td>
+<td class="checkbox-center">
+    <input type="checkbox">
+    <span class="print-checkbox"></span>
+</td>
+<td class="checkbox-center">
+    <input type="checkbox">
+    <span class="print-checkbox"></span>
+</td>
+</tr>
+
+<tr>
+<td>7</td><td>Tidur Cepat</td>
+<td class="checkbox-center">
+    <input type="checkbox">
+    <span class="print-checkbox"></span>
+</td>
+<td class="checkbox-center">
+    <input type="checkbox">
+    <span class="print-checkbox"></span>
+</td>
+</tr>
+
+</table>
+
+<br>
+
+<table class="signature-table">
+<tr>
+    <td>
+        <p>Mengetahui,<br>Orang Tua / Wali</p>
+        <div style="height: 40px;"></div> 
+        <input type="text" class="signature-line" placeholder="(Isi Nama Lengkap)">
+    </td>
+    <td>
+        <p>Menyetujui,<br>Pendidik</p>
+        <div style="height: 40px;"></div>
+        <input type="text" class="signature-line" placeholder="(Isi Nama Lengkap)">
+    </td>
+</tr>
+</table>
+
+<p><b>Keterangan:</b><br>
+● Belum Terbiasa = anak belum melakukan tujuh kebiasaan setiap hari<br>
+● Sudah Terbiasa = anak sudah melakukan tujuh kebiasaan setiap hari<br>
+● Silakan beri tanda ceklis (√) sesuai pilihan
+</p>
+
+<div class="no-print">
+<button onclick="window.print()">🖨 CETAK / SIMPAN PDF</button>
+</div>
+
+</div>
